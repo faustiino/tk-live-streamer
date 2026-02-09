@@ -1,0 +1,6 @@
+onlyBuiltDependencies:
+  - bufferutil
+  - es5-ext
+  - esbuild
+  - protobufjs
+  - utf-8-validate

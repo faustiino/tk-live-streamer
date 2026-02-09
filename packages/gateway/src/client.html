@@ -1,0 +1,25 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>TikTok Live Overlay</title>
+<style>
+  body { font: 16px/1.4 system-ui; margin: 20px; }
+  .msg { padding: 6px 10px; border-radius: 8px; margin-bottom: 6px; background:#f6f6f6; }
+  .sys { color:#666; }
+</style>
+<h1>Overlay</h1>
+<div id="log"></div>
+<script>
+ const el = document.getElementById('log');
+ const add = (html, cls='msg') => { const d=document.createElement('div'); d.className=cls; d.innerHTML=html; el.prepend(d); };
+
+ const ws = new WebSocket("ws://localhost:8787/live");
+ ws.onopen = () => add('🔌 Conectado ao gateway','sys');
+ ws.onclose = () => add('❌ Desconectado do gateway','sys');
+ ws.onmessage = ev => {
+   const e = JSON.parse(ev.data);
+   if (e.t === 'message') add(`💬 <b>${e.payload?.user?.nickname}</b>: ${e.payload?.comment}`);
+   else if (e.t === 'gift') add(`🎁 <b>${e.payload?.user?.nickname}</b>: ${e.payload?.giftDetails?.giftName}`);
+   else if (e.t === 'like') add(`❤️ <b>${e.payload?.user?.nickname}</b>: +${e.payload?.likeCount}`);
+   else if (['connecting','connected','reconnecting','disconnected','error'].includes(e.t)) add(`ℹ️ ${e.t} ${JSON.stringify(e.payload)}`,'sys');
+ };
+</script>

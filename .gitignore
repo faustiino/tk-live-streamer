@@ -50,6 +50,9 @@ web_modules/
 # Optional npm cache directory
 .npm
 
+# Optional pnpm cache directory
+.pnpm-store/
+
 # Optional eslint cache
 .eslintcache
 
@@ -137,3 +140,6 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Arquivo VCCode
+.vscode

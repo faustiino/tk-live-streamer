@@ -1,0 +1,21 @@
+{
+  "name": "@tk-live/gateway",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/gateway.ts"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "ws": "^8.18.0",
+    "pino": "^9.2.0",
+    "prom-client": "^15.1.0",
+    "@tk-live/core": "workspace:*"
+  },
+  "devDependencies": {
+    "tsx": "^4.16.0",
+    "@types/ws": "^8.5.10",
+    "@types/express": "^4.17.21"
+  }
+}
